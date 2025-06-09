@@ -37,6 +37,8 @@ router.post('/login', async (req, res) => {
   }
 
   try {
+    console.log("Login attempt:", username, password);
+
     const result = await db.query(
       'SELECT id, name FROM drivers WHERE username = $1 AND password = $2',
       [username, password]
