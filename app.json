@@ -37,6 +37,19 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0dade2f4-7055-43e4-bf24-fab1c721e720"
+      }
+    },
+    "owner": "alaa.hamid",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0dade2f4-7055-43e4-bf24-fab1c721e720"
     }
   }
 }
