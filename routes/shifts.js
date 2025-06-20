@@ -5,7 +5,8 @@ const db = require('../database');
 // Start a shift
 router.post('/start', async (req, res) => {
   const { driver_id, car_id } = req.body;
-
+  console.log('Start shift for driver_id:', req.body.driver_id);
+  
   if (!driver_id || !car_id) {
     return res.status(400).send('Missing driver_id or car_id');
   }
