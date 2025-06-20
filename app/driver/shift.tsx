@@ -1,23 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ShiftScreen() {
+  const [driverId, setDriverId] = useState<number | null>(null);
   const [shiftId, setShiftId] = useState<number | null>(null);
   const [startTime, setStartTime] = useState<string | null>(null);
   const [endTime, setEndTime] = useState<string | null>(null);
 
-  // ⚠️ Hardcoded for now — in future: select these from a dropdown
-  const driver_id = 1;
-  const car_id = 1;
+  const car_id = 1; // Change later if needed
+
+  // ✅ Get logged-in driver_id from AsyncStorage
+  useEffect(() => {
+    AsyncStorage.getItem('driver_id').then(id => {
+      if (id) setDriverId(Number(id));
+      else Alert.alert('Error', 'Driver ID not found');
+    });
+  }, []);
 
   const startShift = async () => {
+    if (!driverId) return Alert.alert('Error', 'Driver ID missing');
+
     try {
-      console.log('Logging shift with driver_id:', driver_id);
+      console.log('Logging shift with driver_id:', driverId);
 
       const res = await fetch('https://taxi-backend-mxtf.onrender.com/shifts/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ driver_id, car_id }),
+        body: JSON.stringify({ driver_id: driverId, car_id }),
       });
 
       if (!res.ok) throw new Error('Failed to start shift');
