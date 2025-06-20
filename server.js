@@ -6,12 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = require('../database'); // Initializes and verifies DB connection
-const driverRoutes = require('../routes/drivers');
-const carRoutes = require('../routes/cars');
-const shiftRoutes = require('../routes/shifts');
-const expenseRoutes = require('../routes/expenses');
-const authRoutes = require('../routes/auth');
+const db = require('./database'); // Initializes and verifies DB connection
+const driverRoutes = require('./routes/drivers');
+const carRoutes = require('./routes/cars');
+const shiftRoutes = require('./routes/shifts');
+const expenseRoutes = require('./routes/expenses');
+const authRoutes = require('./routes/auth');
 
 // Optional test route
 app.get('/', (req, res) => res.send('FleetLogix API is running ✅'));
